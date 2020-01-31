@@ -10,7 +10,7 @@ logger = Logger()
 
 @click.command()
 @click.option("-f", "--file", "file", required=True, type=click.Path(exists=True))
-@click.option("-s", "--start-color", "start_color", default="white")
+@click.option("-s", "--start-color", "start_color", default="black")
 @click.option("-e", "--end-color", "end_color")
 @click.option(
     "-p",
