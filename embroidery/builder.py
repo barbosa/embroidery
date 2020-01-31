@@ -1,12 +1,13 @@
 from PIL import Image
+from .colors import sanitize_color
 from .fileutils import default_output
 from .geometry import embroider_path
 
 
 def build_command(**args):
     file = args.get("file")
-    start_color = args.get("start_color")
-    end_color = args.get("end_color")
+    start_color = sanitize_color(args.get("start_color"))
+    end_color = sanitize_color(args.get("end_color"))
     position = args.get("position").upper()
     output = args.get("output")
 
