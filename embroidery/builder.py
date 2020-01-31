@@ -1,12 +1,13 @@
 from PIL import Image
 from .fileutils import default_output
-from .geometry import embroider_path, gradient_size
+from .geometry import embroider_path
 
 
 def build_command(**args):
     file = args.get("file")
     start_color = args.get("start_color")
     end_color = args.get("end_color")
+    position = args.get("position").upper()
     output = args.get("output")
 
     image_size = Image.open(file).size
@@ -25,6 +26,6 @@ def build_command(**args):
         "-fill",
         f"gradient:{start_color}-{end_color if end_color else start_color}",
         "-draw",
-        f"path '{embroider_path(image_size)}'",
+        f"path '{embroider_path(image_size, position)}'",
         output if output else default_output(file),
     ]

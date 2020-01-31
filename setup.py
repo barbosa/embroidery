@@ -28,7 +28,7 @@ setuptools.setup(
     ],
     entry_points="""
         [console_scripts]
-        embroider = embroidery:embroider
+        embroidery = embroidery:embroidery
     """,
     zip_safe=False,
     include_package_data=True,
