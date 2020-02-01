@@ -1,6 +1,7 @@
 import click
 import subprocess
-from .builder import build_ribbon_command, build_text_command
+from .builder import build_command
+from .fileutils import default_output
 from .geometry import TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT
 from .logger import Logger
 
@@ -22,17 +23,11 @@ logger = Logger()
     default=TOP_RIGHT,
 )
 @click.option("-o", "--output", "output")
-def embroidery(file, start_color, end_color, position, output):
+def embroidery(**args):
     logger.log("running")
 
-    ribbon_command = build_ribbon_command(
-        file, start_color, end_color, position, output
-    )
-    logger.log(" ".join(ribbon_command))
-    subprocess.run(ribbon_command)
-
-    # text_command = build_text_command(output, position, output)
-    # logger.log(" ".join(text_command))
-    # subprocess.run(text_command)
+    command = build_command(**args)
+    logger.log(" ".join(command))
+    subprocess.run(command)
 
     logger.log("done")

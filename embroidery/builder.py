@@ -4,7 +4,13 @@ from .fileutils import default_output
 from .geometry import embroider_path
 
 
-def build_ribbon_command(file, start_color, end_color, position, output):
+def build_command(**args):
+    file = args.get("file")
+    start_color = args.get("start_color")
+    end_color = args.get("end_color")
+    position = args.get("position")
+    output = args.get("output")
+
     image_size = Image.open(file).size
     return [
         "convert",
@@ -15,12 +21,15 @@ def build_ribbon_command(file, start_color, end_color, position, output):
         f"gradient:{start_color}-{end_color if end_color else start_color}",
         "-draw",
         f"path '{embroider_path(image_size, position.upper())}'",
+        "-fill",
+        f"gradient:white-white",
+        "-pointsize",
+        "22",
+        "-gravity",
+        "NorthEast",
+        "-annotate",
+        "45x45+10+50",
+        "BETA",
         output if output else default_output(file),
     ]
 
-
-def build_text_command(file, position, output):
-    return [
-        "convert",
-        # TODO
-    ]
