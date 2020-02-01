@@ -1,3 +1,5 @@
 language: python
+install:
+  - pip install -e .[dev] .[test]
 script:
   - pytest --cov=embroidery tests/
