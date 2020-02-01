@@ -36,3 +36,29 @@ def embroidery_path(image_size, position):
         raise InvalidEmbroideryPosition()
 
     return f"M {p1} {p2} {p3} {p4} Z"
+
+
+def embroidery_gravity(position):
+    if position == TOP_LEFT:
+        return "NorthWest"
+    elif position == TOP_RIGHT:
+        return "NorthEast"
+    elif position == BOTTOM_LEFT:
+        return "SouthWest"
+    elif position == BOTTOM_RIGHT:
+        return "SouthEast"
+    else:
+        raise InvalidEmbroideryPosition()
+
+
+def embroidery_annotation(position):
+    if position == TOP_LEFT:
+        return "-45x-45+10+50"
+    elif position == TOP_RIGHT:
+        return "45x45+10+50"
+    elif position == BOTTOM_LEFT:
+        return "45x45+10+40"
+    elif position == BOTTOM_RIGHT:
+        return "-45x-45+10+40"
+    else:
+        raise InvalidEmbroideryPosition()

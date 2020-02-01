@@ -1,7 +1,7 @@
 from PIL import Image
 from .colors import sanitize_color
 from .fileutils import default_output
-from .geometry import embroidery_path
+from .geometry import embroidery_annotation, embroidery_gravity, embroidery_path
 
 
 def build_command(**args):
@@ -22,13 +22,13 @@ def build_command(**args):
         "-draw",
         f"path '{embroidery_path(image_size, position.upper())}'",
         "-fill",
-        f"gradient:white-white",
+        f"gradient:red-red",
         "-pointsize",
         "22",
         "-gravity",
-        "NorthEast",
+        embroidery_gravity(position.upper()),
         "-annotate",
-        "45x45+10+50",
+        embroidery_annotation(position.upper()),
         "BETA",
         output if output else default_output(file),
     ]
