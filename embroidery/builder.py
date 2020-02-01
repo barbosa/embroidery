@@ -1,7 +1,7 @@
 from PIL import Image
 from .colors import sanitize_color
 from .fileutils import default_output
-from .geometry import embroider_path
+from .geometry import embroidery_path
 
 
 def build_command(**args):
@@ -20,7 +20,7 @@ def build_command(**args):
         "-fill",
         f"gradient:{start_color}-{end_color if end_color else start_color}",
         "-draw",
-        f"path '{embroider_path(image_size, position.upper())}'",
+        f"path '{embroidery_path(image_size, position.upper())}'",
         "-fill",
         f"gradient:white-white",
         "-pointsize",
