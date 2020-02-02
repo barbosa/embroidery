@@ -8,6 +8,8 @@ def build_command(**args):
     file = args.get("file")
     start_color = args.get("start_color")
     end_color = args.get("end_color")
+    text = args.get("text")
+    text_color = args.get("text_color")
     position = args.get("position")
     output = args.get("output")
 
@@ -22,14 +24,14 @@ def build_command(**args):
         "-draw",
         f"path '{embroidery_path(image_size, position.upper())}'",
         "-fill",
-        f"gradient:red-red",
+        f"gradient:{text_color}-{text_color}",
         "-pointsize",
         "22",
         "-gravity",
         embroidery_gravity(position.upper()),
         "-annotate",
         embroidery_annotation(position.upper()),
-        "BETA",
+        text,
         output if output else default_output(file),
     ]
 
