@@ -1,5 +1,5 @@
 from PIL import Image
-from .colors import sanitize_color
+from .colorutils import sanitize_color
 from .fileutils import default_output
 from .geometry import embroidery_annotation, embroidery_gravity, embroidery_path
 
