@@ -1,5 +1,7 @@
 # Embroidery
 
+[![Build Status](https://travis-ci.com/barbosa/embroidery.svg?branch=master)](https://travis-ci.com/barbosa/embroidery)
+
 ## Motivation
 
 ## Requirements
@@ -12,4 +14,4 @@
 
 ## License
 
-This project is distributed under the [MIT License](https://raw.githubusercontent.com/barbosa/embroidery/master/LICENSE).
+This project is distributed under the [MIT License](https://github.com/barbosa/embroidery/blob/master/LICENSE).
