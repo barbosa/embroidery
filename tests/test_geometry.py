@@ -1,7 +1,5 @@
 from embroidery.geometry import (
-    embroidery_path,
-    embroidery_gravity,
-    embroidery_annotation,
+    Geometry,
     TOP_LEFT,
     TOP_RIGHT,
     BOTTOM_LEFT,
@@ -13,66 +11,77 @@ IMAGE_SIZE = (100, 100)
 
 
 class TestGeometry:
-    class TestEmbroideryPath:
+    class TestPath:
         def test_top_left(self):
-            path = embroidery_path(IMAGE_SIZE, TOP_LEFT)
-            assert path == "M 25.0,0 50.0,0 0,50.0 0,25.0 Z"
+            geometry = Geometry(IMAGE_SIZE, TOP_LEFT)
+            assert geometry.path == "M 25.0,0 50.0,0 0,50.0 0,25.0 Z"
 
         def test_top_right(self):
-            path = embroidery_path(IMAGE_SIZE, TOP_RIGHT)
-            assert path == "M 50.0,0 75.0,0 100,25.0 100,50.0 Z"
+            geometry = Geometry(IMAGE_SIZE, TOP_RIGHT)
+            assert geometry.path == "M 50.0,0 75.0,0 100,25.0 100,50.0 Z"
 
         def test_bottom_left(self):
-            path = embroidery_path(IMAGE_SIZE, BOTTOM_LEFT)
-            assert path == "M 0,50.0 50.0,100 25.0,100 0,75.0 Z"
+            geometry = Geometry(IMAGE_SIZE, BOTTOM_LEFT)
+            assert geometry.path == "M 0,50.0 50.0,100 25.0,100 0,75.0 Z"
 
         def test_bottom_right(self):
-            path = embroidery_path(IMAGE_SIZE, BOTTOM_RIGHT)
-            assert path == "M 50.0,100 100,50.0 100,75.0 75.0,100 Z"
+            geometry = Geometry(IMAGE_SIZE, BOTTOM_RIGHT)
+            assert geometry.path == "M 50.0,100 100,50.0 100,75.0 75.0,100 Z"
 
         def test_invalid_position(self):
+            geometry = Geometry(IMAGE_SIZE, "INVALID")
             try:
-                path = embroidery_path(IMAGE_SIZE, "INVALID")
+                geometry.path
                 assert False
             except InvalidEmbroideryPosition:
                 pass
 
-    class TestEmbroideryGravity:
+    class TestGravity:
         def test_top_left(self):
-            assert embroidery_gravity(TOP_LEFT) == "NorthWest"
+            geometry = Geometry(IMAGE_SIZE, TOP_LEFT)
+            assert geometry.gravity == "NorthWest"
 
         def test_top_right(self):
-            assert embroidery_gravity(TOP_RIGHT) == "NorthEast"
+            geometry = Geometry(IMAGE_SIZE, TOP_RIGHT)
+            assert geometry.gravity == "NorthEast"
 
         def test_bottom_left(self):
-            assert embroidery_gravity(BOTTOM_LEFT) == "SouthWest"
+            geometry = Geometry(IMAGE_SIZE, BOTTOM_LEFT)
+            assert geometry.gravity == "SouthWest"
 
         def test_bottom_right(self):
-            assert embroidery_gravity(BOTTOM_RIGHT) == "SouthEast"
+            geometry = Geometry(IMAGE_SIZE, BOTTOM_RIGHT)
+            assert geometry.gravity == "SouthEast"
 
         def test_invalid_position(self):
+            geometry = Geometry(IMAGE_SIZE, "INVALID")
             try:
-                embroidery_gravity("Invalid")
+                geometry.gravity
                 assert False
             except InvalidEmbroideryPosition:
                 pass
 
-    class TestEmbroideryAnnotation:
+    class TestAnnotation:
         def test_top_left(self):
-            assert embroidery_annotation(TOP_LEFT) == "-45x-45+10+50"
+            geometry = Geometry(IMAGE_SIZE, TOP_LEFT)
+            assert geometry.annotation == "-45x-45+0+28.125"
 
         def test_top_right(self):
-            assert embroidery_annotation(TOP_RIGHT) == "45x45+10+50"
+            geometry = Geometry(IMAGE_SIZE, TOP_RIGHT)
+            assert geometry.annotation == "45x45+0+28.125"
 
         def test_bottom_left(self):
-            assert embroidery_annotation(BOTTOM_LEFT) == "45x45+10+40"
+            geometry = Geometry(IMAGE_SIZE, BOTTOM_LEFT)
+            assert geometry.annotation == "45x45+0+28.125"
 
         def test_bottom_right(self):
-            assert embroidery_annotation(BOTTOM_RIGHT) == "-45x-45+10+40"
+            geometry = Geometry(IMAGE_SIZE, BOTTOM_RIGHT)
+            assert geometry.annotation == "-45x-45+0+28.125"
 
         def test_invalid_position(self):
+            geometry = Geometry(IMAGE_SIZE, "INVALID")
             try:
-                embroidery_annotation("Invalid")
+                geometry.annotation
                 assert False
             except InvalidEmbroideryPosition:
                 pass

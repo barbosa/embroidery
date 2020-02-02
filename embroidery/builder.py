@@ -1,7 +1,7 @@
 from PIL import Image
 from .colorutils import sanitize_color
 from .fileutils import default_output
-from .geometry import embroidery_annotation, embroidery_gravity, embroidery_path
+from .geometry import Geometry
 
 
 def build_command(**args):
@@ -19,23 +19,25 @@ def build_command(**args):
         text_colors.append(text_colors[0])
 
     image_size = Image.open(file).size
+    geometry = Geometry(image_size, position.upper())
+
     return [
         "convert",
         file,
         "-size",
-        f"{image_size[0] / 2}x{image_size[1] / 2}",
+        geometry.size,
         "-fill",
         f"gradient:{'-'.join([sanitize_color(color) for color in bg_colors])}",
         "-draw",
-        f"path '{embroidery_path(image_size, position.upper())}'",
+        f"path '{geometry.path}'",
         "-fill",
         f"gradient:{'-'.join([sanitize_color(color) for color in text_colors])}",
         "-pointsize",
-        "22",
+        str(geometry.pointsize),
         "-gravity",
-        embroidery_gravity(position.upper()),
+        geometry.gravity,
         "-annotate",
-        embroidery_annotation(position.upper()),
+        geometry.annotation,
         text,
         output if output else default_output(file),
     ]
