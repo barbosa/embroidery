@@ -6,12 +6,17 @@ from .geometry import embroidery_annotation, embroidery_gravity, embroidery_path
 
 def build_command(**args):
     file = args.get("file")
-    start_color = args.get("start_color")
-    end_color = args.get("end_color")
     text = args.get("text")
-    text_color = args.get("text_color")
     position = args.get("position")
     output = args.get("output")
+
+    bg_colors = args.get("color").split("-")
+    if len(bg_colors) == 1:
+        bg_colors.append(bg_colors[0])
+
+    text_colors = args.get("text_color").split("-")
+    if len(text_colors) == 1:
+        text_colors.append(text_colors[0])
 
     image_size = Image.open(file).size
     return [
@@ -20,11 +25,11 @@ def build_command(**args):
         "-size",
         f"{image_size[0] / 2}x{image_size[1] / 2}",
         "-fill",
-        f"gradient:{start_color}-{end_color if end_color else start_color}",
+        f"gradient:{'-'.join([sanitize_color(color) for color in bg_colors])}",
         "-draw",
         f"path '{embroidery_path(image_size, position.upper())}'",
         "-fill",
-        f"gradient:{text_color}-{text_color}",
+        f"gradient:{'-'.join([sanitize_color(color) for color in text_colors])}",
         "-pointsize",
         "22",
         "-gravity",
