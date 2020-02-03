@@ -33,51 +33,41 @@ pip install embroidery
 embroidery --file icon.png --text BETA
 ```
 
-=> Output image here
+<img src="https://raw.githubusercontent.com/barbosa/embroidery/master/docs/icon_1.png" width="120" height="120" />
 
 ### Advanced
 
 #### Custom color
 
 ```
-embroidery --file icon.png \
-    --color 33cc60 \
-    --text BETA
+embroidery --file icon.png --color 33cc60 --text BETA
 ```
 
-=> Output image here
+<img src="https://raw.githubusercontent.com/barbosa/embroidery/master/docs/icon_2.png" width="120" height="120" />
 
 #### Gradient color
 
 ```
-embroidery --file icon.png \
-    --color FF00FF-FFFF00 \
-    --text BETA
+embroidery --file icon.png --color FF00FF-FFFF00 --text BETA
 ```
 
-=> Output image here
+<img src="https://raw.githubusercontent.com/barbosa/embroidery/master/docs/icon_3.png?token=AABZNSBFGVA3YVCLTQVFVG26G6A62" width="120" height="120" />
 
 #### Custom text color
 
 ```
-embroidery --file icon.png \
-    --color FF00FF-FFFF00 \
-    --text BETA \
-    --text-color 333
+embroidery --file icon.png --color FF00FF-FFFF00 --text BETA --text-color 333
 ```
 
-=> Output image here
+<img src="https://raw.githubusercontent.com/barbosa/embroidery/master/docs/icon_4.png?token=AABZNSBFSEQRV245EXFEFY26G6BA2" width="120" height="120" />
 
 #### Custom position
 
 ```
-embroidery --file icon.png \
-    --color FF00FF-FFFF00 \
-    --text BETA \
-    --position TL
+embroidery --file icon.png --color FF00FF-FFFF00 --text BETA --position TL
 ```
 
-=> Output image here
+<img src="https://raw.githubusercontent.com/barbosa/embroidery/master/docs/icon_5.png?token=AABZNSBG7DLEMCL2U5GZQYS6G6BCI" width="120" height="120" />
 
 ### Full list of options
 
