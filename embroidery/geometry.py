@@ -30,10 +30,10 @@ class Geometry:
             p3 = f"0,{self.height / 2}"
             p4 = f"0,{self.height / 2 - self.thickness}"
         elif self.position == TOP_RIGHT:
-            p1 = f"{self.width / 2},0"
-            p2 = f"{self.width / 2 + self.thickness},0"
-            p3 = f"{self.width},{self.height / 2 - self.thickness}"
-            p4 = f"{self.width},{self.height / 2}"
+            p1 = f"{(self.width - self.thickness) / 2},0"
+            p2 = f"{(self.width + self.thickness) / 2},0"
+            p3 = f"{self.width},{(self.height - self.thickness) / 2}"
+            p4 = f"{self.width},{(self.height + self.thickness) / 2}"
         elif self.position == BOTTOM_LEFT:
             p1 = f"0,{self.height / 2}"
             p2 = f"{self.width / 2},{self.height}"

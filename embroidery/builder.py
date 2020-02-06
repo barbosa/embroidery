@@ -14,10 +14,7 @@ def build_command(**args):
     if len(bg_colors) == 1:
         bg_colors.append(bg_colors[0])
 
-    text_colors = args.get("text_color").split("-")
-    if len(text_colors) == 1:
-        text_colors.append(text_colors[0])
-
+    text_color = args.get("text_color")
     image_size = Image.open(file).size
     geometry = Geometry(image_size, position.upper())
 
@@ -26,21 +23,23 @@ def build_command(**args):
         file,
         "(",
         "-size",
-        f"{image_size[0] / 2}x{image_size[1] / 2}",
-        # "-rotate",
-        # "45",
+        f"{(image_size[0] + geometry.thickness) / 2}x{(image_size[1] + geometry.thickness) / 2}",
+        "-rotate",
+        "45",
         "-background",
-        "#ff000033",
+        "none",
+        "-fill",
+        sanitize_color(text_color),
         "-pointsize",
         str(geometry.pointsize),
         f"label:{text}",
         "-trim",
         "-gravity",
         "center",
-        # "-geometry",
-        # f"-{geometry.thickness / 2}-{geometry.thickness / 2}",
+        "-geometry",
+        f"+{geometry.thickness / 4}+{geometry.thickness / 4}",
         "-extent",
-        f"{image_size[0] / 2}x{image_size[1] / 2}",
+        f"{(image_size[0] - geometry.thickness) / 2}x{(image_size[1] - geometry.thickness) / 2}",
         ")",
         "-fill",
         f"gradient:{'-'.join([sanitize_color(color) for color in bg_colors])}",
