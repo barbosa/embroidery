@@ -25,25 +25,25 @@ class Geometry:
     @property
     def path(self):
         if self.position == TOP_LEFT:
-            p1 = f"{self.width / 2 - self.thickness},0"
-            p2 = f"{self.width / 2},0"
-            p3 = f"0,{self.height / 2}"
-            p4 = f"0,{self.height / 2 - self.thickness}"
+            p3 = f"{(self.width - self.thickness) / 2},0"
+            p4 = f"{(self.width + self.thickness) / 2},0"
+            p1 = f"0,{(self.height + self.thickness) / 2}"
+            p2 = f"0,{(self.height - self.thickness) / 2}"
         elif self.position == TOP_RIGHT:
             p1 = f"{(self.width - self.thickness) / 2},0"
             p2 = f"{(self.width + self.thickness) / 2},0"
             p3 = f"{self.width},{(self.height - self.thickness) / 2}"
             p4 = f"{self.width},{(self.height + self.thickness) / 2}"
         elif self.position == BOTTOM_LEFT:
-            p1 = f"0,{self.height / 2}"
-            p2 = f"{self.width / 2},{self.height}"
-            p3 = f"{self.width / 2 - self.thickness},{self.height}"
-            p4 = f"0,{self.height / 2 + self.thickness}"
+            p1 = f"0,{(self.height - self.thickness) / 2}"
+            p2 = f"{(self.width + self.thickness) / 2},{self.height}"
+            p3 = f"{(self.width - self.thickness) / 2},{self.height}"
+            p4 = f"0,{(self.height + self.thickness) / 2}"
         elif self.position == BOTTOM_RIGHT:
-            p1 = f"{self.width / 2},{self.height}"
-            p2 = f"{self.width},{self.height / 2}"
-            p3 = f"{self.width},{self.height / 2 + self.thickness}"
-            p4 = f"{self.width / 2 + self.thickness},{self.height}"
+            p1 = f"{(self.width - self.thickness) / 2},{self.height}"
+            p2 = f"{self.width},{(self.height - self.thickness) / 2}"
+            p3 = f"{self.width},{(self.height + self.thickness) / 2}"
+            p4 = f"{(self.width + self.thickness) / 2},{self.height}"
         else:
             raise InvalidEmbroideryPosition()
 
@@ -63,23 +63,33 @@ class Geometry:
             raise InvalidEmbroideryPosition()
 
     @property
-    def annotation(self):
-        angle = 45
+    def rotation(self):
+        if self.position in [TOP_LEFT, BOTTOM_RIGHT]:
+            return -45
 
-        # FIXME
-        delta_x = 0
-        delta_y = self.height / 4 + self.pointsize / 4
+        if self.position in [TOP_RIGHT, BOTTOM_LEFT]:
+            return 45
 
-        if self.position == TOP_LEFT:
-            return f"-{angle}x-{angle}+{delta_x}+{delta_y}"
-        elif self.position == TOP_RIGHT:
-            return f"{angle}x{angle}+{delta_x}+{delta_y}"
-        elif self.position == BOTTOM_LEFT:
-            return f"{angle}x{angle}+{delta_x}+{delta_y}"
-        elif self.position == BOTTOM_RIGHT:
-            return f"-{angle}x-{angle}+{delta_x}+{delta_y}"
-        else:
-            raise InvalidEmbroideryPosition()
+        raise InvalidEmbroideryPosition()
+
+    # @property
+    # def annotation(self):
+    #     angle = 45
+
+    #     # FIXME
+    #     delta_x = 0
+    #     delta_y = self.height / 4 + self.pointsize / 4
+
+    #     if self.position == TOP_LEFT:
+    #         return f"-{angle}x-{angle}+{delta_x}+{delta_y}"
+    #     elif self.position == TOP_RIGHT:
+    #         return f"{angle}x{angle}+{delta_x}+{delta_y}"
+    #     elif self.position == BOTTOM_LEFT:
+    #         return f"{angle}x{angle}+{delta_x}+{delta_y}"
+    #     elif self.position == BOTTOM_RIGHT:
+    #         return f"-{angle}x-{angle}+{delta_x}+{delta_y}"
+    #     else:
+    #         raise InvalidEmbroideryPosition()
 
     @property
     def pointsize(self):
