@@ -20,15 +20,17 @@ class Geometry:
 
     @property
     def size(self):
-        return f"{self.width / 2}x{self.height / 2}"
+        vertical = (self.width + self.thickness) / 2
+        horizontal = (self.height + self.thickness) / 2
+        return f"{vertical}x{horizontal}"
 
     @property
     def path(self):
         if self.position == TOP_LEFT:
-            p3 = f"{(self.width - self.thickness) / 2},0"
-            p4 = f"{(self.width + self.thickness) / 2},0"
             p1 = f"0,{(self.height + self.thickness) / 2}"
             p2 = f"0,{(self.height - self.thickness) / 2}"
+            p3 = f"{(self.width - self.thickness) / 2},0"
+            p4 = f"{(self.width + self.thickness) / 2},0"
         elif self.position == TOP_RIGHT:
             p1 = f"{(self.width - self.thickness) / 2},0"
             p2 = f"{(self.width + self.thickness) / 2},0"
@@ -71,25 +73,6 @@ class Geometry:
             return 45
 
         raise InvalidEmbroideryPosition()
-
-    # @property
-    # def annotation(self):
-    #     angle = 45
-
-    #     # FIXME
-    #     delta_x = 0
-    #     delta_y = self.height / 4 + self.pointsize / 4
-
-    #     if self.position == TOP_LEFT:
-    #         return f"-{angle}x-{angle}+{delta_x}+{delta_y}"
-    #     elif self.position == TOP_RIGHT:
-    #         return f"{angle}x{angle}+{delta_x}+{delta_y}"
-    #     elif self.position == BOTTOM_LEFT:
-    #         return f"{angle}x{angle}+{delta_x}+{delta_y}"
-    #     elif self.position == BOTTOM_RIGHT:
-    #         return f"-{angle}x-{angle}+{delta_x}+{delta_y}"
-    #     else:
-    #         raise InvalidEmbroideryPosition()
 
     @property
     def pointsize(self):
