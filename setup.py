@@ -2,7 +2,7 @@ import setuptools
 
 requirements = ["click >= 7.0", "Pillow >= 7.0.0"]
 dev_requirements = ["black >= 19.10b0", "pre-commit >= 1.20.0"]
-test_requirements = ["pytest >= 5.2.4", "pytest-cov >= 2.8.1"]
+test_requirements = ["pytest >= 5.2.4", "pytest-cov >= 2.8.1", "pytest-mock >= 2.0.0"]
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
