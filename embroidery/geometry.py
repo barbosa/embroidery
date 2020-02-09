@@ -67,13 +67,19 @@ class Geometry:
     @property
     def rotation(self):
         if self.position in [TOP_LEFT, BOTTOM_RIGHT]:
-            return -45
+            return "-45"
 
         if self.position in [TOP_RIGHT, BOTTOM_LEFT]:
-            return 45
+            return "45"
 
         raise InvalidEmbroideryPosition()
 
     @property
     def pointsize(self):
-        return self.thickness / 2
+        return str(self.thickness / 2)
+
+    @property
+    def translation(self):
+        x = self.thickness / 4
+        y = self.thickness / 4
+        return f"+{x}+{y}"

@@ -74,24 +74,24 @@ class TestGeometry:
     class TestRotation:
         def test_top_left(self):
             geometry = Geometry(IMAGE_SIZE, TOP_LEFT)
-            assert geometry.rotation == -45
+            assert geometry.rotation == "-45"
 
         def test_top_right(self):
             geometry = Geometry(IMAGE_SIZE, TOP_RIGHT)
-            assert geometry.rotation == 45
+            assert geometry.rotation == "45"
 
         def test_bottom_left(self):
             geometry = Geometry(IMAGE_SIZE, BOTTOM_LEFT)
-            assert geometry.rotation == 45
+            assert geometry.rotation == "45"
 
         def test_bottom_right(self):
             geometry = Geometry(IMAGE_SIZE, BOTTOM_RIGHT)
-            assert geometry.rotation == -45
+            assert geometry.rotation == "-45"
 
         def test_invalid_position(self):
             geometry = Geometry(IMAGE_SIZE, "INVALID")
             try:
-                geometry.rotation == -45
+                geometry.rotation
                 assert False
             except InvalidEmbroideryPosition:
                 pass
@@ -99,4 +99,9 @@ class TestGeometry:
     class TestPointSize:
         def test_it_has_correct_value(self):
             geometry = Geometry(IMAGE_SIZE, TOP_RIGHT)
-            assert geometry.pointsize == 12.5
+            assert geometry.pointsize == "12.5"
+
+    class TestTranslation:
+        def test_it_has_correct_value(self):
+            geometry = Geometry(IMAGE_SIZE, TOP_RIGHT)
+            assert geometry.translation == "+6.25+6.25"
