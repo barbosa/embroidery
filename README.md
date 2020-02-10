@@ -1,6 +1,6 @@
 # Embroidery
 
-[![Build Status](https://travis-ci.com/barbosa/embroidery.svg?branch=master)](https://travis-ci.com/barbosa/embroidery)
+[![Build Status](https://travis-ci.org/barbosa/embroidery.svg?branch=master)](https://travis-ci.org/barbosa/embroidery)
 
 ## Motivation
 
