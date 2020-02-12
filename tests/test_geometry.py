@@ -11,6 +11,14 @@ IMAGE_SIZE = (100, 100)
 
 
 class TestGeometry:
+    class TestInit:
+        def test_invalid_position(self):
+            try:
+                Geometry(IMAGE_SIZE, "INVALID")
+                assert False
+            except InvalidEmbroideryPosition:
+                pass
+
     class TestThickness:
         def test_it_has_correct_value(self):
             geometry = Geometry(IMAGE_SIZE, TOP_RIGHT)
@@ -38,14 +46,6 @@ class TestGeometry:
             geometry = Geometry(IMAGE_SIZE, BOTTOM_RIGHT)
             assert geometry.path == "M 37.5,100 100,37.5 100,62.5 62.5,100 Z"
 
-        def test_invalid_position(self):
-            geometry = Geometry(IMAGE_SIZE, "INVALID")
-            try:
-                geometry.path
-                assert False
-            except InvalidEmbroideryPosition:
-                pass
-
     class TestGravity:
         def test_top_left(self):
             geometry = Geometry(IMAGE_SIZE, TOP_LEFT)
@@ -63,14 +63,6 @@ class TestGeometry:
             geometry = Geometry(IMAGE_SIZE, BOTTOM_RIGHT)
             assert geometry.gravity == "SouthEast"
 
-        def test_invalid_position(self):
-            geometry = Geometry(IMAGE_SIZE, "INVALID")
-            try:
-                geometry.gravity
-                assert False
-            except InvalidEmbroideryPosition:
-                pass
-
     class TestRotation:
         def test_top_left(self):
             geometry = Geometry(IMAGE_SIZE, TOP_LEFT)
@@ -87,14 +79,6 @@ class TestGeometry:
         def test_bottom_right(self):
             geometry = Geometry(IMAGE_SIZE, BOTTOM_RIGHT)
             assert geometry.rotation == "-45"
-
-        def test_invalid_position(self):
-            geometry = Geometry(IMAGE_SIZE, "INVALID")
-            try:
-                geometry.rotation
-                assert False
-            except InvalidEmbroideryPosition:
-                pass
 
     class TestPointSize:
         def test_it_has_correct_value(self):
