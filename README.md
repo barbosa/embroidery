@@ -1,6 +1,7 @@
 # Embroidery
 
 [![Build Status](https://travis-ci.org/barbosa/embroidery.svg?branch=master)](https://travis-ci.org/barbosa/embroidery)
+[![Coverage Status](https://coveralls.io/repos/github/barbosa/embroidery/badge.svg?branch=master)](https://coveralls.io/github/barbosa/embroidery?branch=master)
 
 ## Motivation
 
